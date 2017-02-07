@@ -8,7 +8,7 @@
     "test": "istanbul cover _mocha test -- -R spec"
   },
   "repository": {
-    "url": "https://github.com/ACloudGuru/serverless-plugin-kms-encrypt",
+    "url": "https://github.com/ACloudGuru/serverless-plugin-encrypt",
     "type": "git"
   },
   "author": "John McKim <john@acloud.guru>",
