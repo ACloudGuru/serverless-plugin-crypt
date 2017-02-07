@@ -1,0 +1,31 @@
+{
+  "name": "serverless-plugin-encrypt",
+  "version": "0.0.1",
+  "description": "A Serverless Plugin to encrypt values",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "istanbul cover _mocha test -- -R spec"
+  },
+  "repository": {
+    "url": "https://github.com/ACloudGuru/serverless-plugin-kms-encrypt",
+    "type": "git"
+  },
+  "author": "John McKim <john@acloud.guru>",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.7.26"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.15",
+    "eslint": "^3.13.1",
+    "eslint-config-node": "^1.6.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7"
+  }
+}
