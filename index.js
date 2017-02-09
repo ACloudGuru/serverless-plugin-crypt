@@ -83,6 +83,7 @@ class Plugin {
         this.serverless.cli.log(`Decrypting the text: ${value}`);
 
         const params = {
+            // eslint-disable-next-line node/no-deprecated-api
             CiphertextBlob: new Buffer(value, 'base64'),
         };
 

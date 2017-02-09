@@ -22,6 +22,7 @@
     "eslint": "^3.13.1",
     "eslint-config-node": "^1.6.0",
     "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-node": "^4.0.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
     "istanbul": "^0.4.5",
