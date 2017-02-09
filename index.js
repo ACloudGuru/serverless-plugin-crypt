@@ -1,10 +1,13 @@
 'use strict';
 
+const aws = require('./src/aws');
+
 class Plugin {
     constructor(serverless, options) {
         this.serverless = serverless;
         this.options = options;
-        this.provider = this.serverless.getProvider('aws');
+        this.providerName = serverless.service.provider.name;
+        this.provider = this.serverless.getProvider(this.providerName);
 
         this.commands = {
             crypt: {
@@ -41,7 +44,7 @@ class Plugin {
                     },
                 },
             },
-            
+
         };
 
         this.hooks = {
@@ -50,52 +53,67 @@ class Plugin {
         };
     }
 
+    getCryptConfig() {
+        const customConfig = this.serverless.service.custom;
+
+        if (!customConfig) return null;
+
+        const cryptConfig = customConfig.crypt;
+
+        if (!cryptConfig) return null;
+
+        return cryptConfig[this.providerName]
+    }
+
     encrypt() {
         const value = this.options.value;
         this.serverless.cli.log(`Encrypting the text: ${value}`);
 
-        const cryptConfig = this.serverless.service.custom.crypt;
-        const kmsKeyId = cryptConfig.aws.kmsKeyId;
+        const cryptConfig = this.getCryptConfig();
 
-        if(!kmsKeyId) {
-            throw new Error(`Missing KMS key please set custom.crypt.kmsKeyId`);
+        if (!cryptConfig) {
+            this.serverless.cli.log(`Please set the crypt plugin config`);
         }
 
-        const params = {
-            KeyId: kmsKeyId,
-            Plaintext: value,
-        };
-
-        return this.provider.request(
-            'KMS',
-            'encrypt',
-            params,
-            this.options.stage, this.options.region
-        ).then((ret) => {
-            const ciperText = ret.CiphertextBlob.toString('base64');
-            this.serverless.cli.log(`Cipher text is Base64 encoded.`);
-            this.serverless.cli.log(ciperText)
-        });
+        switch(this.providerName) {
+            case 'aws':
+                aws.encrypt(
+                    this.provider,
+                    this.options.stage,
+                    this.options.region,
+                    value,
+                    cryptConfig.kmsKeyId,
+                    (msg) => this.serverless.cli.log(msg)
+                );
+                break;
+            default:
+                throw new Error(`Unsupported provider ${this.providerName}`)
+        }
     }
 
     decrypt() {
         const value = this.options.value;
         this.serverless.cli.log(`Decrypting the text: ${value}`);
 
-        const params = {
-            // eslint-disable-next-line node/no-deprecated-api
-            CiphertextBlob: new Buffer(value, 'base64'),
-        };
+        const cryptConfig = this.getCryptConfig();
 
-        return this.provider.request(
-            'KMS',
-            'decrypt',
-            params,
-            this.options.stage, this.options.region
-        ).then((ret) => {
-            this.serverless.cli.log(`Decrypted text`);
-            this.serverless.cli.log(ret.Plaintext.toString('utf-8'))
-        });
+        if (!cryptConfig) {
+            this.serverless.cli.log(`Please set the crypt plugin config`);
+        }
+
+        switch(this.providerName) {
+            case 'aws':
+                aws.decrypt(
+                    this.provider,
+                    this.options.stage,
+                    this.options.region,
+                    value,
+                    (msg) => this.serverless.cli.log(msg)
+                );
+                break;
+            default:
+                throw new Error(`Unsupported provider ${this.providerName}`)
+        }
     }
 }
 
