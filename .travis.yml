@@ -16,7 +16,7 @@ deploy:
     secure: BFfRK5y1ulElx7aTiB5tNgDgIeFCJDW55pC8dNcfK8A+Ng+kZxu2BiWMwuy+Hmg2ElpNkmHznw2gfEL5enoQKdARUoIyfmj27D2nKUm1zoA48cvP35dTgomp0Rbpmq2nkGJ05xNTDeLjUfLIcv84shnO4jOxtVRP/VWENYJ1M9FibakhopUSsDtEh3XS2bwi0lU8FqS5VZVU2+2VZEapNQMGJNRqQzV8zyjcmrvzxbcazqSVi2urpQ6CFRU25a5snqp8OGIyd+jJfLXqpJofktlYvnHQDnkETEGskF9xMBt+k8//qIn+8zQk58SEFO8RhfInfs163c+cGJezucL1pd6BsRFZu4t11PEMSpGe9qFGMTmajZNuucV94rDcbwE8vdcJCFKU2NDyBhSCtp/Y1/Y39w6+T75os4HtkaMNtHy3UhJD5GM9Nm4dbwywm5toDlEhyVWIbSM1P3TTCFv0etKccCF3bJlB5rXOoynIUwhm8BKnjw1Su8vaV9RyNyUHyN+ZyejTAp3wYEJPuP1SYTsZXUXYxocTDxS/Y1aiVrwILWsFpSlRmmyX1S1C2yYZ2ExL/QolxeqRcL46cOr5pHZ+n/jLReh7G9PTw6idaPRlaiRw/GXkgvQjTtLilr9cq0jJIKTvRvrrnIKmUiDlabkLp5gwzI0QEZxbYgtewMM=
   on:
     tags: true
-    repo: ACloudGuru/serverless-plugin-encrypt
+    repo: ACloudGuru/serverless-plugin-crypt
     branch: master
     node: '4.4'
 
