@@ -1,14 +1,14 @@
 {
-  "name": "serverless-plugin-encrypt",
+  "name": "serverless-plugin-crypt",
   "version": "0.0.1",
-  "description": "A Serverless Plugin to encrypt values",
-  "main": "src/index.js",
+  "description": "A Serverless Plugin to encrypt and decrypt values",
+  "main": "index.js",
   "scripts": {
     "lint": "eslint .",
     "test": "istanbul cover _mocha test -- -R spec"
   },
   "repository": {
-    "url": "https://github.com/ACloudGuru/serverless-plugin-encrypt",
+    "url": "https://github.com/ACloudGuru/serverless-plugin-crypt",
     "type": "git"
   },
   "author": "John McKim <john@acloud.guru>",
